@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookProject.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:viewModel="clr-namespace:BookProject.ViewModel"
              mc:Ignorable="d" 
              Background="Gray"
@@ -102,8 +103,15 @@
                      FontSize="20px"
                      VerticalContentAlignment="Center"
                      Name="SearchBox"
-                     KeyUp="SearchBox_Enter">
-
+                     Text="{Binding TextBox, UpdateSourceTrigger= PropertyChanged}"
+                     >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <i:InvokeCommandAction
+                            Command="{Binding SortList}"
+                            CommandParameter="{Binding Books}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </TextBox>
         </Grid>
 
@@ -115,7 +123,8 @@
                   Foreground="black"
                   BorderBrush="Transparent"
                   Name="BookListView"
-                  SelectionChanged="BookListSelectionChanged"
+                  ItemsSource="{Binding Books, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedBook}"
                   >
             
             <ListView.View>
@@ -144,7 +153,8 @@
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center" Height="167" Width="166"/>
         <StackPanel Grid.Column="1" 
-                    Grid.Row="2">
+                    Grid.Row="2"
+                    DataContext="{Binding SelectedBook}">
             <Separator Background="Black"
                       Margin="10px 0"
                       VerticalAlignment="Center"
@@ -156,7 +166,7 @@
                            TextAlignment="Center"/>
                 <TextBlock Name="BookTitle"
                           Style="{StaticResource Description}"
-                          Text="------------------------------"/>
+                          Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Book author: "
@@ -165,7 +175,7 @@
                            TextAlignment="Center"/>
                 <TextBlock Name="BookAuthor"
                            Style="{StaticResource Description}"
-                           Text="------------------------------"/>
+                           Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Book release date: "
@@ -174,7 +184,7 @@
                           TextAlignment="Center"/>
                 <TextBlock Name="BookDate"
                            Style="{StaticResource Description}"
-                           Text="------------------------------"/>
+                           Text="{Binding ReleaseDate, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Book amount: "
@@ -183,7 +193,7 @@
                           TextAlignment="Center"/>
                 <TextBlock Name="BookAmount"
                           Style="{StaticResource Description}"
-                          Text="------------------------------"/>
+                          Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Book id: "
@@ -192,7 +202,7 @@
                           TextAlignment="Center"/>
                 <TextBlock Name="BookId"
                           Style="{StaticResource Description}"
-                          Text="------------------------------"/>
+                          Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

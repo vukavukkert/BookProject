@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:BookProject.ViewModel"
              mc:Ignorable="d" 
              Background="Gray"
@@ -100,7 +101,14 @@
                      FontSize="20px"
                      VerticalContentAlignment="Center"
                      Name="SearchBox"
-                     KeyUp="SearchBox_Enter">
+                     Text="{Binding TextBox, UpdateSourceTrigger= PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <i:InvokeCommandAction
+                            Command="{Binding SortList}"
+                            CommandParameter="{Binding Users}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
             </TextBox>
         </Grid>
@@ -112,7 +120,8 @@
                   Foreground="black"
                   BorderBrush="Transparent"
                   Name="UserListView"
-                  SelectionChanged="UserListSelectionChanged">
+                  ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedUser}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="auto"
@@ -130,7 +139,8 @@
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center" Height="167" Width="166"/>
         <StackPanel Grid.Column="1" 
-                    Grid.Row="2">
+                    Grid.Row="2"
+                    DataContext="{Binding SelectedUser}">
             <Separator Background="Black"
                       Margin="10px 0"
                       VerticalAlignment="Center"
@@ -142,7 +152,7 @@
                            TextAlignment="Center"/>
                 <TextBlock Name="userName"
                           Style="{StaticResource Description}"
-                          Text="------------------------------"/>
+                          Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="User Last Name: "
@@ -151,7 +161,7 @@
                            TextAlignment="Center"/>
                 <TextBlock Name="userLastName"
                            Style="{StaticResource Description}"
-                           Text="------------------------------"/>
+                           Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="User Id: "
@@ -160,7 +170,7 @@
                           TextAlignment="Center"/>
                 <TextBlock Name="userId"
                            Style="{StaticResource Description}"
-                           Text="------------------------------"/>
+                           Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
