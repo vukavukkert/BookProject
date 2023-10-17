@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace BookProject
 {
+    /// <summary>
+    /// User class
+    /// </summary>
     public class User : INotifyPropertyChanged
     {
+        #region Properties
+
+        
+
         private int id { get; set; }
         private string name { get; set; }
         private string lastName { get; set; }
@@ -53,7 +60,11 @@ namespace BookProject
                 OnPropertyChanged("Books");
             }
         }
+        #endregion
 
+        /// <summary>
+        /// User Constructor
+        /// </summary>
         public User(string name, string lastName, int id)
         {
             Name = name;
@@ -62,6 +73,9 @@ namespace BookProject
             Books = new ObservableCollection<Book>();
         }
 
+        /// <summary>
+        /// Add Book to User
+        /// </summary>
         public void AddBook(Book book)
         {
             Books.Add(book);

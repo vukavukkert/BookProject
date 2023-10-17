@@ -9,8 +9,15 @@ using System.Xml.Linq;
 
 namespace BookProject
 {
+    /// <summary>
+    /// Book class
+    /// </summary>
     public class Book : INotifyPropertyChanged
     {
+        #region Properties
+
+        
+
         private string title { get; set; }
         private string author { get; set; }
         private short id { get; set; }
@@ -63,6 +70,11 @@ namespace BookProject
                 OnPropertyChanged("Amount");
             }
         }
+        #endregion
+
+        /// <summary>
+        /// Book Constructor
+        /// </summary>
         public Book(string title, string author, short id, DateTime releaseDate, int amount)
         {
             Title = title;

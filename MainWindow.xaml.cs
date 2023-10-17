@@ -25,40 +25,7 @@ namespace BookProject
         public MainWindow()
         {
             InitializeComponent();
-
             DataContext = new ApplicationViewModel();
-            SetUpUserPage();
-        }
-
-        private void Menu_Button_OnClick(object sender, RoutedEventArgs e)
-        {
-            switch ((sender as Button).Name)
-            {
-                case "MenuUser": 
-                    SetUpUserPage();
-                    return;
-                case "MenuBook":
-                    SetUpBookPage();
-                    return;
-                case "MenuUserBook": 
-                    SetUpUserBookPage();
-                    return;
-            }
-        }
-
-        public void SetUpUserPage()
-        {
-            MyContentControl.Content = new UserList();
-        }
-
-        public void SetUpBookPage()
-        {
-            MyContentControl.Content = new BookList();
-        }
-
-        public void SetUpUserBookPage()
-        {
-            MyContentControl.Content = new AddBookToUser();
         }
     }
 }

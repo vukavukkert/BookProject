@@ -29,25 +29,25 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button  Name="MenuUser" Click="Menu_Button_OnClick" Style="{StaticResource MenuButtons}" >
+            <Button  Name="MenuUser" Style="{StaticResource MenuButtons}" Command="{Binding SetUpPage}" CommandParameter="MenuUser" >
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Logo/user-512.png"/>
                 </Button.Background>
             </Button>
-            <Button  Name="MenuBook"  Click="Menu_Button_OnClick" Grid.Row="1" Style="{StaticResource MenuButtons}">
+            <Button  Name="MenuBook" Grid.Row="1" Style="{StaticResource MenuButtons}"  Command="{Binding SetUpPage}" CommandParameter="MenuBook">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Logo/book-512.png"/>
                 </Button.Background>
             </Button>
-            <Button  Name="MenuUserBook"  Click="Menu_Button_OnClick" Grid.Row="2" Style="{StaticResource MenuButtons}">
+            <Button  Name="MenuUserBook"   Grid.Row="2" Style="{StaticResource MenuButtons}"  Command="{Binding SetUpPage}" CommandParameter="MenuUserBook">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Logo/book-stack-512.png"/>
                 </Button.Background>
             </Button>
 
         </Grid>
-        
-        <ContentControl Grid.Column="1"  Name="MyContentControl">
+
+        <ContentControl Grid.Column="1"  Name="MyContentControl" Content="{Binding MyContentControl, UpdateSourceTrigger=PropertyChanged}">
             
         </ContentControl>
     </Grid>

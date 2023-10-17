@@ -8,21 +8,22 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using BookProject.ViewModel;
 
 namespace BookProject
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
+        #region Properties
+
         
 
-        private Book selectedBook;
-        private User selectedUser;
-        private string textBox;
-        private ObservableCollection<Book> books { get; set; } 
-        private ObservableCollection<User> users { get; set; }
-
+       
         private string messageBox;
-
+        /// <summary>
+        /// Shows messages
+        /// </summary>
         public string MessageBox
         {
             get { return messageBox; }
@@ -45,7 +46,11 @@ namespace BookProject
 
             }
         }
-
+        private ObservableCollection<Book> books { get; set; }
+        public ObservableCollection<Book> constBooks { get; }
+        /// <summary>
+        /// Collection of books
+        /// </summary>
         public ObservableCollection<Book> Books
         {
             get
@@ -61,10 +66,14 @@ namespace BookProject
                 books = value;
                 OnPropertyChanged("Books");
             }
-        } //shows in the view
+        } 
 
-        public ObservableCollection<Book> constBooks { get;} // constant list of books, constant
 
+        private ObservableCollection<User> users { get; set; }
+        public ObservableCollection<User> constUsers { get; }
+        /// <summary>
+        /// Collection of users
+        /// </summary>
         public ObservableCollection<User> Users
         {
             get 
@@ -82,8 +91,30 @@ namespace BookProject
             }
 
         }
-        public ObservableCollection<User> constUsers { get;}
 
+
+        private ContentControl myContentControl;
+        /// <summary>
+        /// Content controls for loading content
+        /// </summary>
+        public ContentControl MyContentControl
+        {
+            get
+            {
+                if (myContentControl == null) { myContentControl = new UserList(); }
+                return myContentControl;
+            }
+            set
+            {
+                myContentControl = value; 
+                OnPropertyChanged("MyContentControl");
+            }
+        }
+
+        private string textBox;
+        /// <summary>
+        /// Text box that used for search inputs
+        /// </summary>
         public string TextBox
         {
             get
@@ -96,7 +127,35 @@ namespace BookProject
                 OnPropertyChanged("TextBox");
             }
         }
+        private Book selectedBook;
+        public Book SelectedBook
+        {
+            get
+            {
+                return selectedBook;
+            }
+            set
+            {
+                selectedBook = value; OnPropertyChanged("SelectedBook");
+                MessageBox = "";
+            }
+        }
+
+        private User selectedUser;
+        public User SelectedUser
+        {
+            get
+            {
+                return selectedUser;
+            }
+            set { selectedUser = value; OnPropertyChanged("SelectedUser"); MessageBox = ""; }
+        }
+        #endregion
+        #region Commands
         private RelayCommand sortList;
+        /// <summary>
+        /// Searches collection by key(Textbox text)
+        /// </summary>
         public RelayCommand SortList
         {
             get
@@ -116,7 +175,27 @@ namespace BookProject
                            (obj) => TextBox != " "));
             }
         }
+        /// <summary>
+        /// Sets content control if button was pressed
+        /// </summary>
+        private RelayCommand setUpPage;
+        public  RelayCommand SetUpPage
+        {
+            get
+            {
+                return setUpPage ?? (setUpPage = new RelayCommand(obj =>
+                {
+                    if ((obj as string) == "MenuUser") MyContentControl = new UserList();
+                    if ((obj as string) == "MenuBook") MyContentControl = new BookList();
+                    if ((obj as string) == "MenuUserBook") MyContentControl = new AddBookToUser();
+                }));
 
+            }
+           
+        }
+        /// <summary>
+        /// adds selected book to selected user
+        /// </summary>
         private RelayCommand addBook;
         public RelayCommand AddBook
         {
@@ -126,32 +205,13 @@ namespace BookProject
                        (addBook = new RelayCommand(obj =>
                        {
                                selectedBook.Amount--;
-                               selectedUser.Books.Add(selectedBook);
+                               selectedUser.AddBook(selectedBook);
                                MessageBox = "";
                        },
                            (obj)=> selectedBook.Amount > 0));
             }
         }
-
-        public Book SelectedBook
-        {
-            get
-            {
-                return selectedBook;
-            }
-            set { selectedBook = value; OnPropertyChanged("SelectedBook");
-                MessageBox = "";
-            }
-        }
-        public User SelectedUser
-        {
-            get
-            {
-                return selectedUser;
-            }
-            set { selectedUser = value; OnPropertyChanged("SelectedUser"); MessageBox = ""; }
-        }
-
+        #endregion
         public ApplicationViewModel()
         {
             constBooks = new ObservableCollection<Book>()
@@ -173,6 +233,7 @@ namespace BookProject
                 new User("Goober","Fisher", 4),
             };
             Users = constUsers;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
