@@ -175,6 +175,8 @@ namespace BookProject
                            (obj) => TextBox != " "));
             }
         }
+
+     
         /// <summary>
         /// Sets content control if button was pressed
         /// </summary>
@@ -207,7 +209,7 @@ namespace BookProject
                                selectedBook.Amount--;
                                selectedUser.AddBook(selectedBook);
                                MessageBox = "";
-                       },
+                       }, 
                            (obj)=> selectedBook.Amount > 0));
             }
         }

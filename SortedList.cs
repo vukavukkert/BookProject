@@ -16,7 +16,7 @@ namespace BookProject
         /// </summary>
         public static ObservableCollection<T> SearchCollection(string key, ObservableCollection<T> list)
         {
-            if (key.Length == 0) return list; // Если длина ключа равна нулю -  на выход
+            if (key.Length == 0 || key ==null) return list; // Если длина ключа равна нулю -  на выход
 
             ObservableCollection<T> SortedList = new ObservableCollection<T>(); // Временный лист
 

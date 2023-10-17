@@ -10,7 +10,7 @@
 
 
     <Control.Resources>
-        
+
         <Style TargetType="ComboBox">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
@@ -98,11 +98,15 @@
         </Style>
     </Control.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="637*"/>
+            <RowDefinition Height="83*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -159,14 +163,14 @@
 
         </Grid>
         <ListView Grid.Column="1" 
-                  Margin="20px"
+                  Margin="20,20,20,20"
                   FontSize="15px"
                   FontWeight="DemiBold"
                   Background="DarkGray"
                   Foreground="black"
                   BorderBrush="Transparent"
                   Name="UserBookListView"
-                  ItemsSource="{Binding SelectedUser.Books}">
+                  ItemsSource="{Binding SelectedUser.Books}" Grid.RowSpan="2">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Width="auto"
