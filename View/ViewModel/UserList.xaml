@@ -54,7 +54,7 @@
                                 Padding="0"
                                 SnapsToDevicePixels="true">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="../Images/Logo/user-16.png"/>
+                                <Image Source="/Images/Logo/user-16.png"/>
                                 <GridViewRowPresenter 
                                     HorizontalAlignment="Center" 
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -94,7 +94,7 @@
                 <ColumnDefinition Width="0.10*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image Source="../Images/Logo/search-13-512.png"
+            <Image Source="/Images/Logo/search-13-512.png"
                    Margin="10px"/>
             <TextBox Grid.Column="1" Margin="0px 15px 40px 15px"
                      Height="40px"
@@ -134,7 +134,7 @@
                 </ListView.View>
         </ListView>
         <Image Grid.Column="1" Grid.Row="1" 
-               Source="../Images/Logo/user-512.png"
+               Source="/Images/Logo/user-512.png"
                Margin="0"
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center" Height="167" Width="166"/>
