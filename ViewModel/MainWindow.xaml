@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookProject"
+        xmlns:local="clr-namespace:BookProject.ViewModel"
         xmlns:UserControls="clr-namespace:BookProject.ViewModel"
 
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" 
-        Icon="Images/Logo/book-16.png"
+        Icon="/Images/Logo/user-512.png"
         Title="Library" Height="720" Width="1280" MinHeight="720" MinWidth="1280">
     <Window.Resources>
         <Style TargetType="Button" x:Key="MenuButtons">
@@ -31,17 +31,17 @@
             </Grid.RowDefinitions>
             <Button  Name="MenuUser" Style="{StaticResource MenuButtons}" Command="{Binding SetUpPage}" CommandParameter="MenuUser" >
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/Logo/user-512.png"/>
+                    <ImageBrush ImageSource="/Images/Logo/user-512.png"/>
                 </Button.Background>
             </Button>
             <Button  Name="MenuBook" Grid.Row="1" Style="{StaticResource MenuButtons}"  Command="{Binding SetUpPage}" CommandParameter="MenuBook">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/Logo/book-512.png"/>
+                    <ImageBrush ImageSource="/Images/Logo/book-512.png"/>
                 </Button.Background>
             </Button>
             <Button  Name="MenuUserBook"   Grid.Row="2" Style="{StaticResource MenuButtons}"  Command="{Binding SetUpPage}" CommandParameter="MenuUserBook">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/Logo/book-stack-512.png"/>
+                    <ImageBrush ImageSource="/Images/Logo/book-stack-512.png"/>
                 </Button.Background>
             </Button>
 
