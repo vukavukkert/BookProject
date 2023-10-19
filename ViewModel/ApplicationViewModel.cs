@@ -17,9 +17,20 @@ namespace BookProject
     {
         #region Properties
 
-        
 
-       
+        private Book selectedUserBook;
+
+        public Book SelectedUserBook
+        {
+            get { return selectedUserBook; }
+            set
+            {
+                selectedUserBook = value;
+                OnPropertyChanged("SelectedUserBook");
+            }
+        }
+
+
         private string messageBox;
         /// <summary>
         /// Shows messages
@@ -152,6 +163,30 @@ namespace BookProject
         }
         #endregion
         #region Commands
+        private RelayCommand returnBook;
+
+        public RelayCommand ReturnBook
+        {
+            get
+            {
+                return returnBook ?? (returnBook = new RelayCommand(obj =>
+                {
+                    var book = obj as Book;
+                    if (book!= null)
+                    {
+                        book.Amount++;
+                        SelectedUser.RemoveBook(book);
+                        MessageBox = "";
+                    }
+                   
+                    
+                   
+                },(obj)=> true
+                   ));
+
+            }
+        }
+
         private RelayCommand sortList;
         /// <summary>
         /// Searches collection by key(Textbox text)

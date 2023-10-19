@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookProject.ViewModel"
+             xmlns:bookProject="clr-namespace:BookProject.ViewModel"
              mc:Ignorable="d" 
              Background="Gray"
              d:DesignHeight="720" d:DesignWidth="1245">
 
-
-    <Control.Resources>
-
+        <Control.Resources>
+           
         <Style TargetType="ComboBox">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
@@ -169,8 +169,9 @@
                   Background="DarkGray"
                   Foreground="black"
                   BorderBrush="Transparent"
-                  Name="UserBookListView"
-                  ItemsSource="{Binding SelectedUser.Books}" Grid.RowSpan="2">
+                  x:Name="BookList"
+                  ItemsSource="{Binding SelectedUser.Books}" 
+                  Grid.RowSpan="2">
             <ListView.View>
                 <GridView >
                     <GridViewColumn Width="auto"
@@ -182,6 +183,22 @@
                     <GridViewColumn Width="auto"
                                     DisplayMemberBinding="{
                         Binding Path= ReleaseDate}">Release Date</GridViewColumn>
+                   <GridViewColumn>
+                       <GridViewColumn.CellTemplate>
+                           <DataTemplate>
+                               <Border>
+                                   <Button Command="{Binding ElementName=BookList, Path=DataContext.ReturnBook}"
+                                           CommandParameter="{Binding}"
+                                           Padding="10">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Images/Logo/return-16-red.png"/>
+                                    </Button.Background>
+                                   </Button>
+                               </Border>
+                           </DataTemplate>
+                       </GridViewColumn.CellTemplate>
+                   </GridViewColumn>
+                       
                 </GridView>
             </ListView.View>
         </ListView>

@@ -81,6 +81,11 @@ namespace BookProject
             Books.Add(book);
         }
 
+        public void RemoveBook(Book book)
+        {
+            Books.Remove(book);
+        }
+
         public override string ToString() => $"{Name} {LastName}";
 
         public event PropertyChangedEventHandler PropertyChanged;

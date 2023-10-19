@@ -62,18 +62,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\ViewModel\ApplicationViewModel.cs" />
+    <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="Model\SortedList.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="View\ViewModel\AddBookToUser.xaml.cs">
+    <Compile Include="ViewModel\AddBookToUser.xaml.cs">
       <DependentUpon>AddBookToUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewModel\BookList.xaml.cs">
+    <Compile Include="ViewModel\BookList.xaml.cs">
       <DependentUpon>BookList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewModel\UserList.xaml.cs">
+    <Compile Include="ViewModel\UserList.xaml.cs">
       <DependentUpon>UserList.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
@@ -88,15 +88,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ViewModel\AddBookToUser.xaml">
+    <Page Include="ViewModel\AddBookToUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewModel\BookList.xaml">
+    <Page Include="ViewModel\BookList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewModel\UserList.xaml">
+    <Page Include="ViewModel\UserList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,6 +147,9 @@
   <ItemGroup>
     <Resource Include="Images\Logo\user-16.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Logo\return-16-red.png" />
+    <Resource Include="Images\Logo\return-16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
